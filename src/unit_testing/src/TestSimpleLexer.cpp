@@ -1,4 +1,4 @@
-#include "lexer.h"
+#include "simple_parser/lexer.h"
 
 #include "catch.hpp"
 
