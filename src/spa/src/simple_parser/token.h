@@ -24,7 +24,7 @@ namespace Simple {
       row = r;
       t = token_t;
     }
-    virtual std::string str(){ return "BaseToken"; };
+    virtual std::string str() = 0;
   };
 
   class ProcedureToken: public BaseToken {
