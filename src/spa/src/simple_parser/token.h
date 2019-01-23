@@ -16,10 +16,9 @@ namespace Simple {
   };
 
   class BaseToken {
-  protected:
+  public:
     int row;
     TokenType t;
-  public:
     BaseToken(int r, TokenType token_t) {
       row = r;
       t = token_t;

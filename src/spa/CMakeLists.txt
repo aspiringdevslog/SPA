@@ -5,6 +5,7 @@ set(srcs
 set(headers
   src/simple_parser/lexer.h
   src/simple_parser/token.h
+  src/simple_parser/parser.h
   )
 
 add_library(spa ${srcs} ${headers})
