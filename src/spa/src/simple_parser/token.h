@@ -16,10 +16,12 @@ namespace Simple {
   };
 
   class BaseToken {
-  private:
+  protected:
+    int row;
     TokenType t;
   public:
-    BaseToken(TokenType token_t) {
+    BaseToken(int r, TokenType token_t) {
+      row = r;
       t = token_t;
     }
     virtual std::string str(){ return "BaseToken"; };
@@ -29,9 +31,9 @@ namespace Simple {
   private:
     std::string name;
   public:
-    ProcedureToken() : BaseToken(TokenType::PROCEDURE) {};
+    ProcedureToken(int r) : BaseToken(r, TokenType::PROCEDURE) {};
     std::string str() {
-      return "PROCEDURE[]";
+      return "PROCEDURE[row=" + std::to_string(row) + "]";
     };
   };
 
@@ -39,11 +41,11 @@ namespace Simple {
   private:
     std::string name;
   public:
-    SymbolToken(std::string n) : BaseToken(TokenType::SYMBOL) {
+    SymbolToken(int r, std::string n) : BaseToken(r, TokenType::SYMBOL) {
       name = n;
     };
     std::string str() {
-      return "SYMBOL[" + name + "]";
+      return "SYMBOL[row=" + std::to_string(row) + ",name=" + name + "]";
     };
   };
 
@@ -51,59 +53,51 @@ namespace Simple {
   private:
     std::string number;
   public:
-    NumberToken(std::string n) : BaseToken(TokenType::NUMBER) {
+    NumberToken(int r, std::string n) : BaseToken(r, TokenType::NUMBER) {
       number = n;
     };
     std::string str() {
-      return "NUMBER[" + number + "]";
-    };
-  };
-
-  class EOLToken: public BaseToken {
-  public:
-    EOLToken() : BaseToken(TokenType::EOL) {};
-    std::string str() {
-      return "EOL[]";
+      return "NUMBER[row=" + std::to_string(row) + ",num=" + number + "]";
     };
   };
 
   class LBraceToken: public BaseToken {
   public:
-    LBraceToken() : BaseToken(TokenType::L_BRACE) {};
+    LBraceToken(int r) : BaseToken(r, TokenType::L_BRACE) {};
     std::string str() {
-      return "LBRACE[]";
+      return "LBRACE[row=" + std::to_string(row) + "]";
     };
   };
 
   class RBraceToken: public BaseToken {
   public:
-    RBraceToken() : BaseToken(TokenType::R_BRACE) {};
+    RBraceToken(int r) : BaseToken(r, TokenType::R_BRACE) {};
     std::string str() {
-      return "RBRACE[]";
+      return "LBRACE[row=" + std::to_string(row) + "]";
     };
   };
 
   class EqualToken: public BaseToken {
   public:
-    EqualToken() : BaseToken(TokenType::EQUAL) {};
+    EqualToken(int r) : BaseToken(r, TokenType::EQUAL) {};
     std::string str() {
-      return "EQUAL[]";
+      return "EQUAL[row=" + std::to_string(row) + "]";
     };
   };
 
   class SemiToken: public BaseToken {
   public:
-    SemiToken() : BaseToken(TokenType::SEMI) {};
+    SemiToken(int r) : BaseToken(r, TokenType::SEMI) {};
     std::string str() {
-      return "SEMI[]";
+      return "SEMI[row=" + std::to_string(row) + "]";
     };
   };
 
   class EOFToken: public BaseToken {
   public:
-    EOFToken() : BaseToken(TokenType::END_OF_FILE) {};
+    EOFToken(int r) : BaseToken(r, TokenType::END_OF_FILE) {};
     std::string str() {
-      return "EOF[]";
+      return "EOF[row=" + std::to_string(row) + "]";
     };
   };
 }
