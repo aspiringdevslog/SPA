@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.12)
-project (autotester)
+project (autotester CXX)
 
 set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${PROJECT_SOURCE_DIR}/cmake")
 message (STATUS "${PROJECT_SOURCE_DIR} ${PROJECT_BINARY_DIR}")
@@ -31,6 +31,8 @@ find_package(Autotester REQUIRED)
 include_directories("${CMAKE_CURRENT_LIST_DIR}/lib")#include catch.hpp
 
 add_subdirectory(src/spa)
+add_subdirectory(src/simple_parser)
+set_target_properties(simple_parser PROPERTIES LINKER_LANGUAGE CXX)
 add_subdirectory(src/autotester)
 add_subdirectory(src/autotester_gui)
 add_subdirectory(src/unit_testing)
